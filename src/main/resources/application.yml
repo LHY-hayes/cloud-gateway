@@ -10,11 +10,11 @@ spring:
   application:
     name: spring-cloud-gateway
   cloud:
-    # 路由网关配置
     gateway:
-      discovery:
-        locator:
-          enabled: true
+      # 路由网关自动创建路由配置
+#      discovery:
+#        locator:
+#          enabled: true
       routes:
         - id: hello-route
           uri: lb://hello-service
@@ -30,6 +30,12 @@ spring:
             - Path=/didi/**
           filters:
             - StripPrefix=1
+# 展示所以的路由节点信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 
 # 配置日志级别，方便调试
